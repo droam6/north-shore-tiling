@@ -306,7 +306,7 @@
       // CONVERSION TRACKING - fire GTM event here
 
       // Submit via fetch
-      fetch('https://api.web3forms.com/submit', {
+      fetch('https://formspree.io/f/xojkgngr', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -342,7 +342,7 @@
 
   // Init all forms on page
   function init() {
-    var forms = document.querySelectorAll('form[action="https://api.web3forms.com/submit"]');
+    var forms = document.querySelectorAll('form[action="https://formspree.io/f/xojkgngr"]');
     for (var i = 0; i < forms.length; i++) {
       initForm(forms[i]);
     }
