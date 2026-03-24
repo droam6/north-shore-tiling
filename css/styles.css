@@ -1627,7 +1627,7 @@ h1, h2, h3, h4, h5, h6 {
    ================================================================ */
 .page-header {
   background: var(--color-navy);
-  padding: 8rem 0 3rem;
+  padding: 12rem 0 3rem;
 }
 
 .page-header h1 {
@@ -1725,7 +1725,7 @@ h1, h2, h3, h4, h5, h6 {
   min-height: 50vh;
   display: flex;
   align-items: flex-end;
-  padding: 8rem 0 3rem;
+  padding: 12rem 0 3rem;
   overflow: hidden;
   background: var(--color-navy);
 }
@@ -1763,7 +1763,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (min-width: 1024px) {
   .service-hero-content { padding: 0 var(--container-px-lg); }
-  .service-hero { min-height: 55vh; padding: 10rem 0 4rem; }
+  .service-hero { min-height: 55vh; padding: 14rem 0 4rem; }
 }
 
 .service-hero h1 {
