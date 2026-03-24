@@ -99,7 +99,7 @@ app.post('/api/contact', async (req, res) => {
     const emailRouting = {
       tiling: 'northshoretiling8@gmail.com',
       painting: 'northshorepainting8@gmail.com',
-      cleaning: 'northshorecleaning8@gmail.com',
+      cleaning: 'northshorecleans8@gmail.com',
       removals: 'northshoreremovals1@gmail.com'
     };
     const notificationEmail = emailRouting[service] || emailRouting.tiling;

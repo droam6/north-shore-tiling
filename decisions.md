@@ -53,7 +53,7 @@ The 17 suburbs cover the core North Shore corridor from Chatswood to Cremorne, h
 |---------|-------|
 | Tiling | northshoretiling8@gmail.com |
 | Painting | northshorepainting8@gmail.com |
-| Cleaning | northshorecleaning8@gmail.com |
+| Cleaning | northshorecleans8@gmail.com |
 | Default (general pages) | northshoretiling8@gmail.com |
 
 **Rationale:**

@@ -15,7 +15,7 @@
 
 ## Sister Sites
 - **Painting:** northshorepainting.com.au (linked from `painting.html` redirect)
-- **Cleaning:** northshorecleaning.com.au (linked from `cleaning.html` redirect)
+- **Cleaning:** northshorecleans.com.au (linked from `cleaning.html` redirect)
 - **Removals:** northshoreremovals.com (linked from `northshore-removals.html` redirect)
 
 ## Project Structure
@@ -24,7 +24,7 @@
 /
 ├── index.html                  # Homepage (tiling service page)
 ├── painting.html               # Redirect → northshorepainting.com.au
-├── cleaning.html               # Redirect → northshorecleaning.com.au
+├── cleaning.html               # Redirect → northshorecleans.com.au
 ├── northshore-removals.html    # Redirect → northshoreremovals.com
 ├── contact.html                # Contact / enquiry page
 ├── sitemap.xml                 # XML sitemap (22 URLs)

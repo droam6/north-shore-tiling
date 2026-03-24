@@ -37,7 +37,7 @@
 |---------|---------------|
 | Tiling | northshoretiling8@gmail.com |
 | Painting | northshorepainting8@gmail.com |
-| Cleaning | northshorecleaning8@gmail.com |
+| Cleaning | northshorecleans8@gmail.com |
 | Removals | northshoreremovals1@gmail.com |
 | General / Default | northshoretiling8@gmail.com |
 
