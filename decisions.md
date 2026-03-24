@@ -449,14 +449,14 @@ Timestamp: PAGE_LOAD_TIME vs submission time, reject if < 3000ms
 
 ## D22: Site Split — Tiling-Only Repo from Multi-Service Site
 
-**Decision:** Split the multi-service NORTH-SHORE-PROJECTS repo into a tiling-only site at `northshoretiling.com.au` (NORTH-SHORE-TILING repo). Sister sites for painting and cleaning will be created separately.
+**Decision:** Split the multi-service NORTH-SHORE-PROJECTS repo into a tiling-only site at `northshoretiles.com.au` (NORTH-SHORE-TILING repo). Sister sites for painting and cleaning will be created separately.
 
 **What changed:**
 - Forked NORTH-SHORE-PROJECTS into a new NORTH-SHORE-TILING directory with fresh git history
 - `tiling.html` renamed to `index.html` — tiling is the homepage
 - Deleted all painting/cleaning content: 34 suburb pages, 3 blog posts, 2 landing pages, `images/painting/` directory
 - Created thin redirect pages for `painting.html`, `cleaning.html`, `northshore-removals.html` — minimal pages with full nav/footer that point users to sister site domains
-- Domain updated across all files: `northshoreprojects.com.au` → `northshoretiling.com.au`
+- Domain updated across all files: `northshoreprojects.com.au` → `northshoretiles.com.au`
 - Branding updated: "North Shore Projects" → "North Shore Tiling" in nav, footer, titles, JSON-LD
 - Blog listing trimmed to 2 tiling-only articles
 - Sitemap rewritten with 22 tiling-focused URLs
@@ -464,7 +464,7 @@ Timestamp: PAGE_LOAD_TIME vs submission time, reject if < 3000ms
 
 **Rationale:**
 - Separate domains allow each service to build independent SEO authority and topical relevance
-- `northshoretiling.com.au` is a stronger exact-match domain for tiling queries than `northshoreprojects.com.au`
+- `northshoretiles.com.au` is a stronger exact-match domain for tiling queries than `northshoreprojects.com.au`
 - Each service can evolve its design, content, and marketing independently
 - Redirect pages on the tiling site preserve cross-service discoverability — users looking for painting/cleaning are directed to the right domain
 - The multi-service NORTH-SHORE-PROJECTS repo is preserved as-is for reference

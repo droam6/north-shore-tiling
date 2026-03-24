@@ -18,7 +18,7 @@
 | Semantic HTML5 structure | Done | `<header>`, `<main>`, `<section>`, `<footer>`, `<nav>` |
 | Meta tags (title, description) | Done | Unique per page |
 | Open Graph + Twitter Card tags | Done | All pages |
-| Canonical URLs | Done | All pages — domain: northshoretiling.com.au |
+| Canonical URLs | Done | All pages — domain: northshoretiles.com.au |
 | hreflang `en-AU` | Done | All pages |
 | JSON-LD structured data | Done | LocalBusiness + Service schemas per page type |
 | Heading hierarchy (single H1) | Done | Verified across all pages |
@@ -89,7 +89,7 @@ Chatswood, Killara, Gordon, Pymble, Turramurra, Lindfield, Roseville, St Ives, W
 | tiling.html → index.html | Done | Tiling service page is now the homepage |
 | Redirect pages created | Done | painting.html, cleaning.html, northshore-removals.html — thin pages linking to sister sites |
 | Navigation updated | Done | All ~28 HTML files: tiling.html→index.html, branding→North Shore Tiling |
-| Domain updated | Done | northshoreprojects.com.au → northshoretiling.com.au across all files |
+| Domain updated | Done | northshoreprojects.com.au → northshoretiles.com.au across all files |
 | Blog trimmed | Done | Removed 3 non-tiling article cards from blog listing |
 | Sitemap rewritten | Done | 22 tiling-only URLs |
 | CLAUDE.md rewritten | Done | Tiling-only repo documentation |

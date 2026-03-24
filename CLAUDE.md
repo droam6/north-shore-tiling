@@ -5,7 +5,7 @@
 
 ## Business
 - **Name:** North Shore Tiling
-- **Domain:** https://northshoretiling.com.au
+- **Domain:** https://northshoretiles.com.au
 - **Service:** Tiling & Waterproofing (primary). Redirect pages link to sister sites for Painting, Cleaning, and Removals.
 - **Area:** North Shore Sydney, NSW, Australia
 - **Phone:** 0433 333 332

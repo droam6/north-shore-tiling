@@ -3,4 +3,4 @@ Allow: /
 Disallow: /api/
 Disallow: /landing/
 
-Sitemap: https://northshoretiling.com.au/sitemap.xml
+Sitemap: https://northshoretiles.com.au/sitemap.xml
