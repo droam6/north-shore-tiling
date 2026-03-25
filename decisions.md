@@ -285,7 +285,7 @@ Timestamp: PAGE_LOAD_TIME vs submission time, reject if < 3000ms
 **Decision:** Use placeholder values for ABN and aggregate ratings in structured data until real data is available.
 
 **Placeholders:**
-- ABN: `12 345 678 901` (dummy)
+- ABN: `21 726 132 250` (dummy)
 - Aggregate rating: 4.9 stars, 87 reviews (aspirational)
 
 **Rationale:**

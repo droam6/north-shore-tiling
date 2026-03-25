@@ -137,7 +137,7 @@ Chatswood, Killara, Gordon, Pymble, Turramurra, Lindfield, Roseville, St Ives, W
 
 | Issue | Severity | Details |
 |-------|----------|---------|
-| ABN is placeholder | Medium | `12 345 678 901` is a dummy ABN — needs real ABN before launch |
+| ABN is placeholder | Medium | `21 726 132 250` is a dummy ABN — needs real ABN before launch |
 | Aggregate ratings in schema | Medium | 4.9 stars / 87 reviews hardcoded in JSON-LD — need real review data or remove |
 | Blog dates may be future-dated | Low | Blog posts dated Jan-Feb 2026 — verify publish schedule |
 | Suburb pages still load old fonts | Low | Some suburb pages may still reference Montserrat + Open Sans in `<link>` tags |

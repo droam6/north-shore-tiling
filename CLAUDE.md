@@ -10,7 +10,7 @@
 - **Area:** North Shore Sydney, NSW, Australia
 - **Phone:** 0433 333 332
 - **Email:** northshoretiling8@gmail.com
-- **ABN:** 12 345 678 901
+- **ABN:** 21 726 132 250
 - **Hours:** Mon-Sat 7am-6pm
 
 ## Sister Sites
