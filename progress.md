@@ -95,6 +95,17 @@ Chatswood, Killara, Gordon, Pymble, Turramurra, Lindfield, Roseville, St Ives, W
 | CLAUDE.md rewritten | Done | Tiling-only repo documentation |
 | .gitignore updated | Done | Added *.MOV/*.mov |
 
+## Live Deploy Verification (2026-08-17, post-push 40f1eba) — PASSED
+
+Crawled https://northshoretiles.com.au after the Cloudflare Pages deploy:
+all 21 sitemap pages + landing page returned 200; all 71 referenced
+assets (renamed WebP images, videos, favicon, CSS/JS) returned 200 —
+no case-sensitivity breakage; all 6 OG images + robots.txt 200. Only
+non-200 was Cloudflare's own `/cdn-cgi/l/email-protection` endpoint
+(expected CDN behaviour, not a site asset). No fixes required.
+
+---
+
 ## Phase 9: Audit Fix Pass (2026-08-17) — COMPLETE
 
 | Item | Status | Notes |
