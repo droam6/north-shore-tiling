@@ -7,6 +7,8 @@
 
   var PAGE_LOAD_TIME = Date.now();
 
+  var LEAD_WEBHOOK = 'https://droam8.app.n8n.cloud/webhook/lead-submission';
+
   var RULES = {
     name: {
       regex: /^[a-zA-Z\s'\-]{2,}$/,
@@ -272,10 +274,11 @@
       }
 
       // Show loading state
+      var originalText = '';
       if (btn) {
         btn.classList.add('is-loading');
         btn.disabled = true;
-        var originalText = btn.textContent || btn.value;
+        originalText = btn.textContent || btn.value;
         if (btn.tagName === 'BUTTON') btn.textContent = 'Sending...';
         else btn.value = 'Sending...';
       }
@@ -297,6 +300,7 @@
       if (formData.phone) {
         formData.phone_raw = stripNonDigits(formData.phone);
       }
+      formData.page = window.location.pathname;
 
       // dataLayer push
       var service = formData.service || '';
@@ -309,18 +313,49 @@
       });
       // CONVERSION TRACKING - fire GTM event here
 
+      // Lead-tracking webhook — fire-and-forget; runs only after
+      // validation and spam checks pass, and must never block or fail
+      // the Formspree submission the customer is waiting on.
+      try {
+        fetch(LEAD_WEBHOOK, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+          keepalive: true
+        }).catch(function () {});
+      } catch (err) {}
+
       // Submit via fetch
       fetch('https://formspree.io/f/xojkgngr', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(formData)
-      }).then(function () {
+      }).then(function (res) {
+        if (!res.ok) throw new Error('Formspree responded ' + res.status);
         showSuccess(form);
       }).catch(function () {
-        // Still show success in case backend isn't configured yet
-        showSuccess(form);
+        showFailure(form, btn, originalText);
       });
     });
+  }
+
+  function showFailure(form, btn, originalText) {
+    if (btn) {
+      btn.classList.remove('is-loading');
+      btn.disabled = false;
+      if (btn.tagName === 'BUTTON') btn.textContent = originalText;
+      else btn.value = originalText;
+    }
+    var errDiv = form.querySelector('.form-submit-error');
+    if (!errDiv) {
+      errDiv = document.createElement('div');
+      errDiv.className = 'form-submit-error';
+      errDiv.setAttribute('role', 'alert');
+      errDiv.style.cssText = 'margin-top:12px;color:#E25555;font-weight:500;';
+      errDiv.innerHTML = 'Sorry — your enquiry could not be sent. Please try again, or call us on <a href="tel:+61433333332" style="color:inherit">0433 333 332</a>.';
+      form.appendChild(errDiv);
+    }
+    errDiv.style.display = 'block';
   }
 
   function showSuccess(form) {
