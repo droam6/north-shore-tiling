@@ -1,6 +1,6 @@
 # North Shore Tiling — Progress Tracker
 
-> Last updated: 2026-03-21 (Site split from NORTH-SHORE-PROJECTS into tiling-only repo)
+> Last updated: 2026-08-17 (Full site audit + quick wins + media overhaul + conversion/legal pass)
 
 ---
 
@@ -95,6 +95,33 @@ Chatswood, Killara, Gordon, Pymble, Turramurra, Lindfield, Roseville, St Ives, W
 | CLAUDE.md rewritten | Done | Tiling-only repo documentation |
 | .gitignore updated | Done | Added *.MOV/*.mov |
 
+## Phase 9: Audit Fix Pass (2026-08-17) — COMPLETE
+
+| Item | Status | Notes |
+|------|--------|-------|
+| Junk file removal | Done | `index 2.html` (old NSP homepage), server.js, server.py, js/main.js, stale styles.min.css, 4 unused sister logos |
+| Wrong-brand logo fix | Done | contact.html + 3 blog pages showed NSP logo; swapped to NST (9 refs) |
+| Dead/blank link fixes | Done | 6 blog footer links to deleted painting/cleaning suburb pages; 3 blank inline links on suburb pages |
+| Favicon rollout | Done | 32px + 180px versions generated; tags on all 26 pages (was 1 page, 253KB file) |
+| Index hygiene | Done | Redirect pages noindexed + out of sitemap; robots.txt `Disallow: /landing/` removed so noindex is crawlable; lastmod refreshed |
+| Webhook centralisation | Done | n8n lead webhook moved into form-validation.js: all 20 forms, post-validation, full payload; fake-success on failure removed |
+| Media optimization (W1) | Done | 20 gallery/hero images 215MB → 1.2MB WebP 1600px; videos 18.3MB → 5.4MB; 14MB poster → 33KB; logo 517KB → 11.5KB |
+| Unreferenced media purge (W1b) | Done | 45 orphan photos (630MB) + all originals archived to `Desktop/nst-media-archive/` then removed from repo |
+| Croydon Park photos | Done | 8 best of 80 new job photos processed; hero + gallery group added |
+| Unsplash heroes replaced (W7) | Done | 17 suburb pages + contact now use distinct local project photos |
+| OG images (W2) | Done | 6 missing 1200×630 social images generated; broken schema logo URLs fixed |
+| Suburb hero CTAs (W3) | Done | Get a Free Quote + Call buttons on all 17 suburb heroes |
+| Privacy + terms (W11) | Done | privacy.html + terms.html created, footer-linked on all 27 pages incl. landing; in sitemap |
+
+### Deferred from audit (user hold — later session)
+- W4 Nav gaps (Contact nav link, desktop header phone, sticky call button on redirect pages)
+- W5 Blog decision (re-link vs delete — currently orphaned by design pending decision)
+- W6 Reviews carousel + Service Areas mega-menu port from sister sites
+- W8 Accessibility pass (gold-on-cream contrast 2.48:1, aria-hidden on ~460 icons, h2→h4 jumps)
+- W9 Performance pass (AOS blocks hero LCP, no hero preload, full Font Awesome for 14 icons)
+- W10 Schema upgrades (BreadcrumbList, FAQPage, lang/hreflang cleanup)
+- Q7 Instagram normalisation — BLOCKED: two handles in use (`northshore.tiling` on suburb pages, `northshoretiling` elsewhere); need the real handle from the owner
+
 ---
 
 ## REMAINING WORK
@@ -103,10 +130,10 @@ Chatswood, Killara, Gordon, Pymble, Turramurra, Lindfield, Roseville, St Ives, W
 
 | Item | Blocked By | Notes |
 |------|-----------|-------|
-| Form backend (`/api/contact`) | Hosting decision | Need serverless function or email service |
-| Privacy policy page (`privacy.html`) | Legal content | Linked from footers. Currently 404 |
-| Terms & conditions page (`terms.html`) | Legal content | Linked from footers. Currently 404 |
-| Favicon + apple-touch-icon | Asset creation | No `<link rel="icon">` on any page |
+| ~~Form backend~~ | Done | Formspree delivery + n8n lead webhook (both wired in form-validation.js) |
+| ~~Privacy policy page~~ | Done | privacy.html live, footer-linked |
+| ~~Terms & conditions page~~ | Done | terms.html live, footer-linked |
+| ~~Favicon + apple-touch-icon~~ | Done | On all pages |
 
 ### Medium Priority (blocks marketing)
 
@@ -137,7 +164,9 @@ Chatswood, Killara, Gordon, Pymble, Turramurra, Lindfield, Roseville, St Ives, W
 
 | Issue | Severity | Details |
 |-------|----------|---------|
-| ABN is placeholder | Medium | `21 726 132 250` is a dummy ABN — needs real ABN before launch |
-| Aggregate ratings in schema | Medium | 4.9 stars / 87 reviews hardcoded in JSON-LD — need real review data or remove |
-| Blog dates may be future-dated | Low | Blog posts dated Jan-Feb 2026 — verify publish schedule |
-| Suburb pages still load old fonts | Low | Some suburb pages may still reference Montserrat + Open Sans in `<link>` tags |
+| Two Instagram handles in use | Medium | Suburb pages link `northshore.tiling` (51 links); everything else `northshoretiling` (27). One 404s — awaiting the real handle before normalising |
+| Git history still holds old photo blobs | Low | Repo pack ~870MB from previously committed originals; needs a history rewrite + force push to shrink (coordinate before doing) |
+| Blog orphaned by design | Low | No inbound links, not in sitemap — pending W5 re-link vs delete decision |
+| ~~ABN placeholder~~ | Resolved | Real ABN 21 726 132 250 committed (01ecf2d), consistent in all 26 footers |
+| ~~Aggregate ratings in schema~~ | Resolved | No aggregateRating exists anywhere — never actually implemented |
+| ~~Old fonts on suburb pages~~ | Resolved | Verified: no Montserrat/Open Sans references remain sitewide |

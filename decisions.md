@@ -475,3 +475,43 @@ Timestamp: PAGE_LOAD_TIME vs submission time, reject if < 3000ms
 - Redirect pages add 3 extra files that exist purely for cross-linking
 - Blog content is now split — tiling gets 2 posts, painting/cleaning will get their own when those repos are created
 - DNS and hosting must be configured for 3 separate domains
+
+---
+
+## D23: 2026-08-17 Audit — Quick-Win Fix Pass
+
+**Decision:** Run a full four-dimension site audit (SEO, forms/links/conversion, performance/media/accessibility, content/consistency), then fix the approved quick wins: delete leftover NSP-era files (`index 2.html`, server.js, server.py, js/main.js, stale styles.min.css, unused sister logos), swap the wrong NSP logo on contact + blog pages, repair dead/blank internal links, roll the favicon out to all pages at proper sizes, noindex the three thin redirect pages and drop them from the sitemap, and remove `Disallow: /landing/` from robots.txt so the landing page's `noindex` is actually crawlable.
+
+**Rationale:** `index 2.html` was a live, indexable copy of the old North Shore Projects homepage with a cross-domain canonical; server.js exposed internal email routing as plaintext; the redirect pages were thin near-duplicates competing for indexing; blocking `/landing/` in robots.txt prevented Google from ever seeing its noindex.
+
+**Trade-offs:** Redirect pages remain as navigation aids only. Instagram link normalisation was deliberately skipped — two handles are in use and the real one is unconfirmed.
+
+---
+
+## D24: Lead Webhook Centralised in form-validation.js
+
+**Decision:** Move the n8n lead-tracking webhook (`droam8.app.n8n.cloud/webhook/lead-submission`) from an inline pre-validation script on index.html into the validated success path of `js/form-validation.js`, posting the full FormData-derived payload (incl. mapped callback Yes/No, hidden source/landing, phone_raw, page path) fire-and-forget with keepalive. Formspree failures now show a visible error with the phone number instead of a fake success.
+
+**Rationale:** Only 1 of 20 forms fed lead tracking; the inline hook fired before validation (bots included) and dropped fields; `.catch(showSuccess)` silently discarded leads on network failure.
+
+**Trade-offs:** Webhook failures are still silent by design (tracking must never block the customer-facing submission). The init selector remains tied to the Formspree action URL.
+
+---
+
+## D25: Media Overhaul — WebP Pipeline + Off-Repo Archive
+
+**Decision:** Re-encode all referenced media (WebP, 1600px longest edge, q78; videos H.264 CRF 28; 800px poster; 176px logo), rename spaced filenames (`PHOTO-… 5.jpg` → `marble-bathroom-5.webp`), archive every original plus 45 unreferenced photos to `Desktop/nst-media-archive/`, and remove them from the repo. New Croydon Park set: 8 of 80 shots selected, processed to the same spec, placed as homepage hero + leading gallery group. All 17 suburb pages + contact.html got distinct local hero photos replacing a single hotlinked Unsplash stock image. Six missing 1200×630 OG images generated from real project photos.
+
+**Rationale:** The homepage served ~215MB of 33MP camera originals into ~300px boxes; the video poster alone was 14MB; every social preview 404'd; suburb pages showed the identical stock office photo. Served weight is now ~7MB repo-wide.
+
+**Trade-offs:** Git history still contains the old blobs (~870MB pack) — shrinking requires a coordinated history rewrite + force push, deferred. The archive folder is the only local copy of the originals.
+
+---
+
+## D26: Suburb Hero CTAs + Legal Pages
+
+**Decision:** Add the standard gold "Get a Free Quote" (#enquiry) and outline "Call 0433 333 332" buttons to all 17 suburb heroes; create privacy.html (Privacy Act 1988 / APPs) and terms.html (quotes, ACL guarantees, website terms) on the standard page skeleton, linked from the footer copyright line on all 27 pages including a new minimal footer on the previously footer-less ad landing page.
+
+**Rationale:** Suburb pages — the local-SEO entry points — had zero hero CTAs with the form ~1,500 words down. Meta/Google Ads require a reachable privacy policy on lead-gen destinations; none existed.
+
+**Trade-offs:** Legal copy is deliberately generic (no invented warranty periods or payment terms — those live in quotes/invoices). Terms/privacy indexed at 0.2 priority.

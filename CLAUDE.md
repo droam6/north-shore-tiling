@@ -27,22 +27,24 @@
 ├── cleaning.html               # Redirect → northshorecleans.com.au
 ├── northshore-removals.html    # Redirect → northshoreremovals.com
 ├── contact.html                # Contact / enquiry page
-├── sitemap.xml                 # XML sitemap (22 URLs)
+├── privacy.html                # Privacy policy (Privacy Act 1988 / APPs)
+├── terms.html                  # Terms & conditions
+├── sitemap.xml                 # XML sitemap (21 URLs — redirect pages excluded/noindexed)
 ├── robots.txt                  # Crawler directives
 ├── CLAUDE.md                   # This file
 │
 ├── css/
-│   ├── styles.css              # Full design system CSS
-│   └── styles.min.css          # Minified CSS
+│   └── styles.css              # Full design system CSS
 │
 ├── js/
-│   └── form-validation.js      # Form validation (IIFE, 357 lines)
+│   └── form-validation.js      # Form validation + Formspree submit + n8n lead webhook
 │
 ├── images/
-│   ├── logos/                  # Brand logos
-│   └── tiling/                 # Tiling project photos (60+ images)
+│   ├── logos/                  # NSTLOGO-HD-FINAL.png (176px, optimized)
+│   ├── og-*.jpg, blog-*.jpg    # 1200×630 social/OG images
+│   └── tiling/                 # Optimized WebP project photos + MP4 clips (~7MB total; originals in Desktop/nst-media-archive)
 │
-├── videos/                     # Project videos (.MOV — gitignored)
+├── videos/                     # ashfield-project.mp4
 │
 ├── suburbs/                    # 17 tiling suburb landing pages
 │   ├── tiling-chatswood.html
@@ -114,10 +116,11 @@ Landing page additionally includes:
 - Hidden field `source=meta-ad` on form
 
 ## Form Structure
-All enquiry forms POST to `/api/contact` with fields:
-- name, email, phone, service, suburb, message
-- Hidden `source` field (organic / meta-ad)
-- dataLayer push on submission: `{event: 'form_submission', service, source}`
+All enquiry forms have `action="https://formspree.io/f/xojkgngr"` and are driven by `js/form-validation.js`, which:
+- validates, then POSTs the payload to Formspree (customer-facing delivery)
+- fires the n8n lead-tracking webhook `https://droam8.app.n8n.cloud/webhook/lead-submission` (fire-and-forget, full payload incl. suburb, callback Yes/No, hidden source/landing, page path)
+- shows a visible error with the phone number if Formspree fails (no fake success)
+- Hidden `source` field (organic / meta-ad); dataLayer push `{event: 'form_submission', service, source}`
 
 ## Internal Linking Strategy
 - Homepage → 17 tiling suburb pages, blog, contact
@@ -127,21 +130,23 @@ All enquiry forms POST to `/api/contact` with fields:
 - Nav dropdown → Tiling (homepage), Painting/Cleaning/Removals (redirect pages)
 
 ## To-Do (Not Yet Implemented)
-- [ ] Add actual images to /images/ folder
+- [x] Add actual images to /images/ folder (Croydon Park + optimized existing sets)
 - [ ] Configure Google Tag Manager container
 - [ ] Install Meta Pixel
-- [ ] Set up form backend (/api/contact endpoint)
+- [x] Set up form backend (Formspree + n8n webhook via form-validation.js)
 - [ ] Configure Google My Business
 - [ ] Submit sitemap to Google Search Console
 - [ ] Set up Google Ads conversion tracking
 - [ ] Add actual Google Map embed on contact page
-- [ ] Create privacy.html and terms.html pages
-- [ ] Add favicon and apple-touch-icon
+- [x] Create privacy.html and terms.html pages
+- [x] Add favicon and apple-touch-icon (all pages)
 - [x] Remove landing pages from sitemap.xml
-- [x] Add `Disallow: /landing/` to robots.txt
-- [ ] Replace placeholder ABN with real ABN
-- [ ] Replace placeholder aggregate ratings with real review data
+- [x] ~~Add `Disallow: /landing/` to robots.txt~~ (reversed in D23 — blocked crawl hid the noindex)
+- [x] Replace placeholder ABN with real ABN
+- [x] Aggregate ratings — verified none exist in schema (nothing to replace)
 - [ ] Minify form-validation.js for production
+- [ ] Confirm real Instagram handle, then normalise all links (Q7 — blocked on owner)
+- [ ] Audit holds: W4 nav gaps, W5 blog decision, W6 reviews/mega-menu port, W8 a11y, W9 perf, W10 schema
 
 ---
 
@@ -158,7 +163,7 @@ This project maintains two tracking files that must be kept current across all s
 - **Purpose:** Logs every significant architectural or design decision with rationale
 - **When to update:** When making a non-trivial choice (new technology, structural change, naming convention, etc.)
 - **Structure:** Numbered entries (D01, D02...) with Decision, Rationale, and Trade-offs
-- **Next ID:** D23
+**Next ID:** D27
 
 ### Rules for All Sessions
 1. **Read both files at the start** of any session that involves code changes
