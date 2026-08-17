@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /api/
-Disallow: /landing/
 
 Sitemap: https://northshoretiles.com.au/sitemap.xml
